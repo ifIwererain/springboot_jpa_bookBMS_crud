@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf-文理图书管理系统</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<style>
+    body {
+        text-align: center;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 60%;
+        height: 350px;
+        margin: 0 auto;
+
+    }
+
+    td,th {
+        width: 20%;
+        border: 2px solid black;
+    }
+    a{
+        display: block;
+        margin: 10px;
+    }
+
+</style>
+
+<body>
+    <h1>Springboot+Jpa+Thymleaf图书管理系统</h1>
+    <hr>
+    <br>
+    <table>
+        <tr>
+            <th>编号</th>
+            <th>图书名称</th>
+            <th>价格</th>
+            <th>图书作者</th>
+            <th>操作</th>
+        </tr>
+        <p th:each="book:${booklist}">
+            <tr>
+                <td th:text="${book.id}"></td>
+                <td th:text="${book.bookname}"></td>
+                <td th:text="${book.price}"></td>
+                <td th:text="${book.author}"></td>
+                <td>
+                    <a th:href="'/updbook/'+${book.id}"><button type="button" class="btn btn-primary">修改</button></a>
+                    <a th:href="'/delbook/'+${book.id}"><button type="button" class="btn btn-danger">删除</button></a>
+                </td>
+            </tr>
+        </p>
+    </table>
+    <a href="/add"><button type="button" class="btn btn-success">添加书籍</button></a>
+
+</body>
+</html>
